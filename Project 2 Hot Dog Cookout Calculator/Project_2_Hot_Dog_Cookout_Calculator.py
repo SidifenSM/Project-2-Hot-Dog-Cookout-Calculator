@@ -26,21 +26,34 @@ def hotdogowners (apple,orange):
     apple = apple % orange
     return apple
 
+def ketchup (fruit, mango):
+    fruit = fruit * mango
+    return fruit
+
 people = int(input("How many people will be attending the cookout: "))
 
 give_dog = int(input("How many hot dogs will each person be given: "))
 
-total_doggers = people * give_dog
+total_doggers = ketchup(people,give_dog)
 
 hotdog_package = hotdogleaders(total_doggers, hot_dogs)
 buns_needed = hotdogleaders(total_doggers, hot_buns)
+
+if hotdogowners(total_doggers, hot_buns):
+    buns_needed += 1
+
+if hotdogowners(total_doggers, hot_dogs):
+    hotdog_package += 1
+
+total_buns = ketchup(buns_needed,hot_buns)
+
 dog_leftover = hotdogowners(total_doggers, hot_dogs)
-bun_leftover = hotdogowners(total_doggers, hot_buns)
+#dog_leftover = total_doggers - hot_dogs
+bun_leftover = total_buns - total_doggers
+#bun_leftover = hotdogowners(total_doggers, hot_buns)
 
 print("\n")
 print("Minimum number of packages of hot dogs required: ", hotdog_package)
 print("Minimum number of packages of hot dog buns required: ", buns_needed)
 print("The number of hot dogs that will be left over: ", dog_leftover)
 print("The number of hot dog buns that will be left over: ", bun_leftover)
-
-
